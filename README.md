@@ -10,7 +10,8 @@ Built with a multi-agent pipeline, retrieval-augmented generation (RAG), live we
 
 ## Demo
 
-![AI Research Agent interface](assets/interface.png)
+<img width="1460" height="873" alt="image" src="https://github.com/user-attachments/assets/09aea782-2cc3-4c78-aea5-00a4c8bafc1f" />
+
 
 ---
 
