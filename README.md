@@ -1,0 +1,179 @@
+# AI Research Agent
+
+An autonomous, multi-agent research assistant that takes any topic, searches the live web, extracts the most relevant insights, and generates a structured, fully sourced research report — in seconds.
+
+Built with a multi-agent pipeline, retrieval-augmented generation (RAG), live web search, and a streaming chat interface.
+
+**Live demo:** https://ai-research-agent-lgpvcdycriqswyebxiw9yx.streamlit.app
+
+---
+
+## Demo
+
+![AI Research Agent interface](assets/interface.png)
+
+---
+
+## What it does
+
+Give it a topic like *"quantum computing breakthroughs 2025"* and the system will:
+
+1. Generate several intelligent search queries from a single topic
+2. Search the live web across all of those queries
+3. Store the results in a vector database for semantic retrieval
+4. Extract the most important insights from everything it found
+5. Write a structured, professional research report
+6. Surface key statistics as a chart, pull out notable quotes, and suggest related topics
+7. Let you ask follow-up questions about the report in a chat interface
+
+All of it streams to the screen in real time, the way a modern AI assistant responds.
+
+---
+
+## How it works
+
+The project is built as a pipeline of focused agents, where each agent does one job and passes its output to the next. This separation of concerns keeps the system easy to debug, extend, and reason about.
+
+```text
+User topic
+    │
+    ▼
+search_agent      generates smart queries, searches the web, stores results
+    │
+    ▼
+research_agent    retrieves the most relevant content, extracts key insights
+    │
+    ▼
+report_agent      writes a structured, streaming research report
+    │
+    ▼
+chart_agent       extracts statistics and renders a chart
+    │
+    ▼
+Streamlit UI      report + chart + quotes + related topics + follow-up chat
+```
+
+---
+
+## Features
+
+- **Multi-agent pipeline** — four cooperating agents, each with a single responsibility
+- **Intelligent query generation** — the agent decides how to search, rather than searching the raw topic once
+- **Retrieval-Augmented Generation (RAG)** — results are embedded and retrieved by semantic meaning, not keyword matching
+- **Streaming output** — the report types out token by token in real time
+- **Automatic charts** — statistics are extracted from the report and plotted
+- **Key quotes** — notable expert opinions are pulled out and highlighted
+- **Related topics** — the agent suggests further avenues to explore
+- **Follow-up chat** — ask questions about the generated report and get grounded answers
+- **Report history** — recent reports are kept in the sidebar
+- **Downloadable reports** — export any report as a text file
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---------|---------|
+| Language | Python |
+| LLM Inference | Groq (Llama 3.3 70B) |
+| Web Search | Tavily API |
+| Vector Database | ChromaDB |
+| Embeddings | Sentence Transformers (`all-MiniLM-L6-v2`) |
+| Orchestration | LangChain |
+| Charts | Matplotlib |
+| Interface & Deployment | Streamlit / Streamlit Community Cloud |
+
+---
+
+## Project Structure
+
+```text
+ai-research-agent/
+├── agents/
+│   ├── search_agent.py
+│   ├── research_agent.py
+│   ├── report_agent.py
+│   └── chart_agent.py
+├── utils/
+│   ├── web_search.py
+│   └── vector_store.py
+├── ui/
+│   └── app.py
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Running It Locally
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/ParitoshVyawahare/ai-research-agent.git
+cd ai-research-agent
+```
+
+### 2. Create a Virtual Environment and Install Dependencies
+
+```bash
+python -m venv venv
+
+# Linux / macOS
+source venv/bin/activate
+
+# Windows
+venv\Scripts\activate
+
+pip install -r requirements.txt
+```
+
+### 3. Add API Keys
+
+Create a `.env` file in the project root:
+
+```env
+GROQ_API_KEY=your_groq_key_here
+TAVILY_API_KEY=your_tavily_key_here
+```
+
+### 4. Run the Application
+
+```bash
+streamlit run ui/app.py
+```
+
+The application will open in your browser at:
+
+```text
+http://localhost:8501
+```
+
+---
+
+## What I Learned Building This
+
+- Designing a multi-agent architecture using the single-responsibility principle
+- Building an end-to-end Retrieval-Augmented Generation (RAG) pipeline
+- Implementing semantic search using embeddings and vector databases
+- Prompt engineering using structured templates and chained LLM calls
+- Managing persistent state across Streamlit reruns
+- Streaming LLM responses token-by-token
+- Deploying AI-powered applications to the cloud with proper secrets management
+
+---
+
+## Future Improvements
+
+- Add an evaluation framework to measure retrieval quality and hallucination rates
+- Persist report history using a database
+- Export reports as PDF and Word documents
+- Add source confidence scoring and citation weighting
+- Support multiple LLM providers
+- Add research report comparison across different time periods
+
+---
+
+## License
+
+This project is licensed under the MIT License.
