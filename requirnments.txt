@@ -1,0 +1,9 @@
+langchain
+langchain-groq
+langchain-core
+tavily-python
+chromadb
+sentence-transformers
+streamlit
+python-dotenv
+matplotlib
