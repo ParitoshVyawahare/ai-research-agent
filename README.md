@@ -31,28 +31,12 @@ All of it streams to the screen in real time, the way a modern AI assistant resp
 
 ---
 
-## How it works
+## Architecture
 
 The project is built as a pipeline of focused agents, where each agent does one job and passes its output to the next. This separation of concerns keeps the system easy to debug, extend, and reason about.
 
-```text
-User topic
-    │
-    ▼
-search_agent      generates smart queries, searches the web, stores results
-    │
-    ▼
-research_agent    retrieves the most relevant content, extracts key insights
-    │
-    ▼
-report_agent      writes a structured, streaming research report
-    │
-    ▼
-chart_agent       extracts statistics and renders a chart
-    │
-    ▼
-Streamlit UI      report + chart + quotes + related topics + follow-up chat
-```
+<img width="539" height="590" alt="image" src="https://github.com/user-attachments/assets/724fa51c-4b4f-47f1-ae4d-7f62081e6bde" />
+
 
 ---
 
